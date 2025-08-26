@@ -14,7 +14,7 @@
 		19C8CFBC2E5E1AAC0075386F /* Exceptions for "NewsFlash" folder in "NewsFlash" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				SupportingFiles/Info.plist,
+				Info.plist,
 			);
 			target = 19C8CF8C2E5E1A130075386F /* NewsFlash */;
 		};
