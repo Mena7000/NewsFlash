@@ -11,10 +11,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		19C8CF9F2E5E1A140075386F /* Exceptions for "NewsFlash" folder in "NewsFlash" target */ = {
+		19C8CFBC2E5E1AAC0075386F /* Exceptions for "NewsFlash" folder in "NewsFlash" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				SupportingFiles/Info.plist,
 			);
 			target = 19C8CF8C2E5E1A130075386F /* NewsFlash */;
 		};
@@ -24,7 +24,7 @@
 		19C8CF8F2E5E1A130075386F /* NewsFlash */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				19C8CF9F2E5E1A140075386F /* Exceptions for "NewsFlash" folder in "NewsFlash" target */,
+				19C8CFBC2E5E1AAC0075386F /* Exceptions for "NewsFlash" folder in "NewsFlash" target */,
 			);
 			path = NewsFlash;
 			sourceTree = "<group>";
