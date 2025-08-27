@@ -17,8 +17,10 @@ class TopHeadlinesVM: ObservableObject {
 
     var cancellables = Set<AnyCancellable>()
 
+    var countiesArray: [Country] = LoadCountiesUtil.loadCountries()
+    @Published var selectedCountry: Country? = nil
+    
     deinit {
         print("💰💰💰💰 TopHeadlinesVM deallocated 💰💰💰💰")
     }
-
 }

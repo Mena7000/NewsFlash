@@ -11,9 +11,13 @@ import Combine
 class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var headlinesTable: UITableView!
+    @IBOutlet weak var selectedCountryCodeLbl: UILabel!
     
     var viewModel: TopHeadlinesVM = TopHeadlinesVM()
     private var cancellables = Set<AnyCancellable>()
+
+    private var countryPicker = UIPickerView()
+    private let pickerContainer = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,7 @@ class TopHeadlinesVC: BaseVC {
     func setupUI() {
         headlinesTable.registerCellNib(withIdentifier: "HeadlineCell")
         setupSearchUI()
+        setupCountryPicker()
     }
     
     func bindVM() {
@@ -44,6 +49,14 @@ class TopHeadlinesVC: BaseVC {
             }
             .store(in: &viewModel.cancellables)
         
+        viewModel.$selectedCountry
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] data in
+                guard let data = data else { return }
+                self?.selectedCountryCodeLbl.text = data.value.uppercased()
+            }
+            .store(in: &viewModel.cancellables)
+
         //        viewModel.$error
         //            .receive(on: DispatchQueue.main)
         //            .sink { [weak self] value in
@@ -77,18 +90,20 @@ class TopHeadlinesVC: BaseVC {
 //            attributes: [.foregroundColor: UIColor(hex: "71838E"), .font: UIFont(name: AppFontName.medium, size: 13)!]
 //        )
     }
-    
-    @IBAction func selectCountryBtnTapped(_ sender: Any) {
         
+    @IBAction func selectCountryBtnTapped(_ sender: Any) {
+        showPicker()
     }
 }
 
+// MARK: - Search Delegates
 extension TopHeadlinesVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
     }
 }
 
+// MARK: - Table Delegates
 extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -117,5 +132,78 @@ extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         print(indexPath)
+    }
+}
+
+// MARK: - Picker Delegates
+extension TopHeadlinesVC: UIPickerViewDelegate, UIPickerViewDataSource {
+    func setupCountryPicker() {
+        pickerContainer.backgroundColor = .systemGroupedBackground
+        pickerContainer.layer.shadowOpacity = 0.3
+        pickerContainer.layer.shadowRadius = 5
+        pickerContainer.isHidden = true
+        view.addSubview(pickerContainer)
+        
+        pickerContainer.translatesAutoresizingMaskIntoConstraints = false
+        countryPicker.translatesAutoresizingMaskIntoConstraints = false
+        countryPicker.delegate = self
+        countryPicker.dataSource = self
+        
+        let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.sizeToFit()
+
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(hidePicker))
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
+        toolbar.setItems([cancel, flex, done], animated: false)
+        
+        pickerContainer.addSubview(toolbar)
+        pickerContainer.addSubview(countryPicker)
+
+        NSLayoutConstraint.activate([
+            pickerContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pickerContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pickerContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            pickerContainer.heightAnchor.constraint(equalToConstant: 250),
+            
+            toolbar.topAnchor.constraint(equalTo: pickerContainer.topAnchor),
+            toolbar.leadingAnchor.constraint(equalTo: pickerContainer.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: pickerContainer.trailingAnchor),
+            toolbar.heightAnchor.constraint(equalToConstant: 44),
+            
+            countryPicker.topAnchor.constraint(equalTo: toolbar.bottomAnchor),
+            countryPicker.leadingAnchor.constraint(equalTo: pickerContainer.leadingAnchor),
+            countryPicker.trailingAnchor.constraint(equalTo: pickerContainer.trailingAnchor),
+            countryPicker.bottomAnchor.constraint(equalTo: pickerContainer.bottomAnchor),
+        ])
+    }
+
+    @objc private func doneTapped() {
+        let row = countryPicker.selectedRow(inComponent: 0)
+        viewModel.selectedCountry = viewModel.countiesArray[row]
+        hidePicker()
+    }
+    
+    @objc private func showPicker() {
+        pickerContainer.isHidden = false
+    }
+
+    @objc private func hidePicker() {
+        pickerContainer.isHidden = true
+    }
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        viewModel.countiesArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        viewModel.countiesArray[row].name
     }
 }

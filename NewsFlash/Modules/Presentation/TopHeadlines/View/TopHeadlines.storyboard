@@ -119,6 +119,7 @@
                     <connections>
                         <outlet property="headlinesTable" destination="hCe-NO-lm5" id="meq-R2-Y4I"/>
                         <outlet property="searchBar" destination="DfB-gc-hSo" id="lOm-m7-X22"/>
+                        <outlet property="selectedCountryCodeLbl" destination="tZw-aP-COT" id="ggR-3h-IV7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
