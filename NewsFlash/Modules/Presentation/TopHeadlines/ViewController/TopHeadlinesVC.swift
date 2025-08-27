@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SwiftUI
 
 class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,6 +24,16 @@ class TopHeadlinesVC: BaseVC {
         super.viewDidLoad()
         setupUI()
         bindVM()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     deinit {
@@ -127,7 +138,9 @@ extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        let detailView = NewsDetailUI(detailId: 10)
+        let hostingController = UIHostingController(rootView: detailView)
+        navigationController?.pushViewController(hostingController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
