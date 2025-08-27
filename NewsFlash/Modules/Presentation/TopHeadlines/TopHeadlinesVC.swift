@@ -6,44 +6,86 @@
 //
 
 import UIKit
+import Combine
 
 class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var headlinesTable: UITableView!
     
     var viewModel: TopHeadlinesVM = TopHeadlinesVM()
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-//        bindVM()
+        bindVM()
     }
-
+    
     deinit {
         print("💰💰💰💰 TopHeadlinesVC deallocated 💰💰💰💰")
     }
-
+    
     func setupUI() {
         headlinesTable.registerCellNib(withIdentifier: "HeadlineCell")
+        setupSearchUI()
     }
     
     func bindVM() {
-//        viewModel = MovieListVM(movieListUseCase: DependencyContainer.shared.resolveMovieListUseCase(),
-//                                movieListType: movieListType)
-
+        searchBar.textDidChangePublisher
+            .debounce(for: .milliseconds(700), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .assign(to: \.searchKeyword, on: viewModel)
+            .store(in: &cancellables)
+    
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
                 self?.activityView(isLoading: value)
             }
             .store(in: &viewModel.cancellables)
+        
+        //        viewModel.$error
+        //            .receive(on: DispatchQueue.main)
+        //            .sink { [weak self] value in
+        //                self?.showToaster(msg: value?.errorDescription ?? "")
+        //            }
+        //            .store(in: &viewModel.cancellables)
+    }
+    
+    func setupSearchUI() {
+        searchBar.searchTextField.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
+        searchBar.searchTextField.layer.cornerRadius = 10
+        searchBar.searchTextField.clipsToBounds = true
+        searchBar.searchTextField.backgroundColor = .white
+        searchBar.delegate = self
+        
+        searchBar.searchTextField.font = UIFont.systemFont(ofSize: 16)
+        searchBar.searchTextField.textColor = UIColor.darkGray
+        searchBar.searchTextField.leftView?.tintColor = UIColor.systemGray
 
-//        viewModel.$error
-//            .receive(on: DispatchQueue.main)
-//            .sink { [weak self] value in
-//                self?.showToaster(msg: value?.errorDescription ?? "")
-//            }
-//            .store(in: &viewModel.cancellables)
+        // Optional: Remove border
+        searchBar.backgroundImage = UIImage()
+        searchBar.layer.borderWidth = 0
+        searchBar.layer.borderColor = UIColor.clear.cgColor
+
+        // Optional: Add subtle border like your screenshot
+        searchBar.searchTextField.layer.borderColor = UIColor(hex: "E0E0E0").cgColor
+        searchBar.searchTextField.layer.borderWidth = 1
+        
+//        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
+//            string: "hintSearch".localizedString,
+//            attributes: [.foregroundColor: UIColor(hex: "71838E"), .font: UIFont(name: AppFontName.medium, size: 13)!]
+//        )
+    }
+    
+    @IBAction func selectCountryBtnTapped(_ sender: Any) {
+        
+    }
+}
+
+extension TopHeadlinesVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.endEditing(true)
     }
 }
 

@@ -24,6 +24,10 @@
 		19C8D0212E5E64CE0075386F /* HeadlineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C8D0202E5E64CE0075386F /* HeadlineCell.xib */; };
 		19C8D0222E5E64CE0075386F /* HeadlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D01F2E5E64CE0075386F /* HeadlineCell.swift */; };
 		19C8D0242E5E6C490075386F /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0232E5E6C460075386F /* StringExt.swift */; };
+		19C8D0262E5E6F9E0075386F /* UISearchBarExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0252E5E6F9E0075386F /* UISearchBarExt.swift */; };
+		19C8D0282E5EF5800075386F /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0272E5EF57D0075386F /* CardView.swift */; };
+		19C8D02A2E5EF5B20075386F /* UIColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0292E5EF5AE0075386F /* UIColorHex.swift */; };
+		19C8D02C2E5EF8490075386F /* RoundCornersImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D02B2E5EF8430075386F /* RoundCornersImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +50,10 @@
 		19C8D01F2E5E64CE0075386F /* HeadlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineCell.swift; sourceTree = "<group>"; };
 		19C8D0202E5E64CE0075386F /* HeadlineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeadlineCell.xib; sourceTree = "<group>"; };
 		19C8D0232E5E6C460075386F /* StringExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		19C8D0252E5E6F9E0075386F /* UISearchBarExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBarExt.swift; sourceTree = "<group>"; };
+		19C8D0272E5EF57D0075386F /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		19C8D0292E5EF5AE0075386F /* UIColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorHex.swift; sourceTree = "<group>"; };
+		19C8D02B2E5EF8430075386F /* RoundCornersImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornersImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +155,8 @@
 		19C8D0022E5E4C250075386F /* Custom Designable */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D02B2E5EF8430075386F /* RoundCornersImage.swift */,
+				19C8D0272E5EF57D0075386F /* CardView.swift */,
 				19C8D0012E5E4C250075386F /* ShadowView.swift */,
 			);
 			path = "Custom Designable";
@@ -155,6 +165,8 @@
 		19C8D0062E5E4C250075386F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D0292E5EF5AE0075386F /* UIColorHex.swift */,
+				19C8D0252E5E6F9E0075386F /* UISearchBarExt.swift */,
 				19C8D0232E5E6C460075386F /* StringExt.swift */,
 				19C8D0032E5E4C250075386F /* CollectionViewExt.swift */,
 				19C8D0042E5E4C250075386F /* TableViewExt.swift */,
@@ -267,13 +279,17 @@
 				19C8D0242E5E6C490075386F /* StringExt.swift in Sources */,
 				19C8D0142E5E4C250075386F /* TopHeadlinesVM.swift in Sources */,
 				19C8D0152E5E4C250075386F /* ActivityLoaderView.swift in Sources */,
+				19C8D0282E5EF5800075386F /* CardView.swift in Sources */,
 				19C8D0162E5E4C250075386F /* BaseVC.swift in Sources */,
+				19C8D0262E5E6F9E0075386F /* UISearchBarExt.swift in Sources */,
 				19C8D0172E5E4C250075386F /* ToastView.swift in Sources */,
 				19C8D0182E5E4C250075386F /* ShadowView.swift in Sources */,
 				19C8D0192E5E4C250075386F /* CollectionViewExt.swift in Sources */,
 				19C8D0222E5E64CE0075386F /* HeadlineCell.swift in Sources */,
 				19C8D01A2E5E4C250075386F /* TableViewExt.swift in Sources */,
 				19C8D01B2E5E4C250075386F /* UIImageExt.swift in Sources */,
+				19C8D02A2E5EF5B20075386F /* UIColorHex.swift in Sources */,
+				19C8D02C2E5EF8490075386F /* RoundCornersImage.swift in Sources */,
 				19C8D01C2E5E4C250075386F /* SceneDelegate.swift in Sources */,
 				19C8D01D2E5E4C250075386F /* AppDelegate.swift in Sources */,
 			);

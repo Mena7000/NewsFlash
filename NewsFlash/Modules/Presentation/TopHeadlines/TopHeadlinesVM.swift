@@ -12,7 +12,9 @@ class TopHeadlinesVM: ObservableObject {
 //    @Published var news: [News] = []
     @Published var isLoading: Bool = false
 //    @Published var error: NetworkError?
-    
+   
+    @Published var searchKeyword: String = ""
+
     var cancellables = Set<AnyCancellable>()
 
     deinit {
