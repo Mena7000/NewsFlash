@@ -39,7 +39,7 @@ extension RequestProtocol {
         var components = URLComponents()
         components.scheme = "https"
         components.host = host
-        components.path = path
+        components.path = "/api/v4/" + path
 
         var queryParamsList: [URLQueryItem] = []
         queryParamsList.append(contentsOf: urlParams.compactMap { URLQueryItem(name: $0.key, value: $0.value) })
@@ -58,8 +58,8 @@ extension RequestProtocol {
             urlRequest.allHTTPHeaderFields = headers
         }
 
-        urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
-        urlRequest.setValue("Bearer \(APIConstants.token)", forHTTPHeaderField: "Authorization")
+//        urlRequest.setValue("application/json", forHTTPHeaderField: "accept")
+//        urlRequest.setValue("Bearer \(APIConstants.token)", forHTTPHeaderField: "Authorization")
 
         if !params.isEmpty {
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params)

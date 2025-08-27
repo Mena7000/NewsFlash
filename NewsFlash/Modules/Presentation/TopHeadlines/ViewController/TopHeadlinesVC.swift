@@ -14,7 +14,7 @@ class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var headlinesTable: UITableView!
     @IBOutlet weak var selectedCountryCodeLbl: UILabel!
     
-    var viewModel: TopHeadlinesVM = TopHeadlinesVM()
+    var viewModel: TopHeadlinesVM!
     private var cancellables = Set<AnyCancellable>()
 
     private var countryPicker = UIPickerView()
@@ -47,6 +47,8 @@ class TopHeadlinesVC: BaseVC {
     }
     
     func bindVM() {
+        viewModel = TopHeadlinesVM(topHeadlinesListUseCase: DependencyContainer.shared.resolveTopHeadlinesListUseCase())
+
         searchBar.textDidChangePublisher
             .debounce(for: .milliseconds(700), scheduler: RunLoop.main)
             .removeDuplicates()
@@ -68,12 +70,22 @@ class TopHeadlinesVC: BaseVC {
             }
             .store(in: &viewModel.cancellables)
 
-        //        viewModel.$error
-        //            .receive(on: DispatchQueue.main)
-        //            .sink { [weak self] value in
-        //                self?.showToaster(msg: value?.errorDescription ?? "")
-        //            }
-        //            .store(in: &viewModel.cancellables)
+        viewModel.$error
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.showToaster(msg: value?.errorDescription ?? "")
+            }
+            .store(in: &viewModel.cancellables)
+        
+        viewModel.$news
+            .sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.headlinesTable.reloadData()
+                }
+            }
+            .store(in: &viewModel.cancellables)
+
+        viewModel.fetchNews()
     }
     
     func setupSearchUI() {
@@ -117,7 +129,7 @@ extension TopHeadlinesVC: UISearchBarDelegate {
 // MARK: - Table Delegates
 extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.news.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -127,11 +139,12 @@ extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "HeadlineCell", for: indexPath) as? HeadlineCell else { return UITableViewCell() }
        
-        let data = HeadlineListData(img: "https://www.lemanbleu.ch/Htdocs/Images/IF_Facebook/puid_dd4e93e3-33d8-433d-a99f-0dd42aec8fe1_20250826193802404.jpg",
-                                    title: "Nucléaire: l'Iran appelle les Européens à faire \" le bon choix \"",
-                                    souce: "Léman Bleu",
-                                    publishDate: "2025-08-26T17:37:00Z")
-        cell.data = data
+        let data = viewModel.news[indexPath.row]
+        let newsData = HeadlineListData(img: data.image ?? "",
+                                        title: data.title ?? "",
+                                        souce: data.source?.name ?? "",
+                                        publishDate: data.publishedAt ?? "")
+        cell.data = newsData
         
         cell.selectionStyle = .none
         return cell
@@ -144,7 +157,7 @@ extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print(indexPath)
+        viewModel.fetchNextPage(indxRow: indexPath.row)
     }
 }
 

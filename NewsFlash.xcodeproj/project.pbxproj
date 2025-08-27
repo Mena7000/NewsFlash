@@ -41,6 +41,10 @@
 		19C8D0712E5F58F80075386F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0652E5F58F80075386F /* Logger.swift */; };
 		19C8D0722E5F58F80075386F /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0662E5F58F80075386F /* NetworkError.swift */; };
 		19C8D0752E5F590F0075386F /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0742E5F590F0075386F /* DependencyContainer.swift */; };
+		19C8D0792E5F5C570075386F /* TopHeadlinesListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0782E5F5C560075386F /* TopHeadlinesListRepository.swift */; };
+		19C8D07B2E5F5CAC0075386F /* HeadlinesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07A2E5F5CAB0075386F /* HeadlinesListUseCase.swift */; };
+		19C8D07D2E5F5D790075386F /* TopHeadlinesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07C2E5F5D780075386F /* TopHeadlinesListService.swift */; };
+		19C8D07F2E5F5DCA0075386F /* TopHeadlinesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +84,10 @@
 		19C8D0692E5F58F80075386F /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		19C8D06A2E5F58F80075386F /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		19C8D0742E5F590F0075386F /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		19C8D0782E5F5C560075386F /* TopHeadlinesListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesListRepository.swift; sourceTree = "<group>"; };
+		19C8D07A2E5F5CAB0075386F /* HeadlinesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesListUseCase.swift; sourceTree = "<group>"; };
+		19C8D07C2E5F5D780075386F /* TopHeadlinesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesListService.swift; sourceTree = "<group>"; };
+		19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +277,8 @@
 		19C8D0362E5F12630075386F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D0762E5F5C420075386F /* Repositories */,
+				19C8D0772E5F5C490075386F /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -276,6 +286,7 @@
 		19C8D0372E5F12760075386F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D07C2E5F5D780075386F /* TopHeadlinesListService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -283,6 +294,7 @@
 		19C8D0382E5F12800075386F /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -317,6 +329,22 @@
 				19C8D0742E5F590F0075386F /* DependencyContainer.swift */,
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		19C8D0762E5F5C420075386F /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				19C8D0782E5F5C560075386F /* TopHeadlinesListRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		19C8D0772E5F5C490075386F /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				19C8D07A2E5F5CAB0075386F /* HeadlinesListUseCase.swift */,
+			);
+			path = UseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,12 +428,14 @@
 				19C8D0242E5E6C490075386F /* StringExt.swift in Sources */,
 				19C8D0142E5E4C250075386F /* TopHeadlinesVM.swift in Sources */,
 				19C8D0152E5E4C250075386F /* ActivityLoaderView.swift in Sources */,
+				19C8D07B2E5F5CAC0075386F /* HeadlinesListUseCase.swift in Sources */,
 				19C8D0282E5EF5800075386F /* CardView.swift in Sources */,
 				19C8D0162E5E4C250075386F /* BaseVC.swift in Sources */,
 				19C8D06B2E5F58F80075386F /* RequestManager.swift in Sources */,
 				19C8D06C2E5F58F80075386F /* APIConstants.swift in Sources */,
 				19C8D06D2E5F58F80075386F /* NetworkManager.swift in Sources */,
 				19C8D06E2E5F58F80075386F /* RequestType.swift in Sources */,
+				19C8D07F2E5F5DCA0075386F /* TopHeadlinesResponse.swift in Sources */,
 				19C8D06F2E5F58F80075386F /* RequestProtocol.swift in Sources */,
 				19C8D0702E5F58F80075386F /* DataParser.swift in Sources */,
 				19C8D0712E5F58F80075386F /* Logger.swift in Sources */,
@@ -421,8 +451,10 @@
 				19C8D03B2E5F13300075386F /* NewsDetailUI.swift in Sources */,
 				19C8D01B2E5E4C250075386F /* UIImageExt.swift in Sources */,
 				19C8D02A2E5EF5B20075386F /* UIColorHex.swift in Sources */,
+				19C8D0792E5F5C570075386F /* TopHeadlinesListRepository.swift in Sources */,
 				19C8D02C2E5EF8490075386F /* RoundCornersImage.swift in Sources */,
 				19C8D01C2E5E4C250075386F /* SceneDelegate.swift in Sources */,
+				19C8D07D2E5F5D790075386F /* TopHeadlinesListService.swift in Sources */,
 				19C8D01D2E5E4C250075386F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

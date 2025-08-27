@@ -8,6 +8,6 @@
 import Foundation
 
 enum APIConstants {
-    static let baseURL = "https://gnews.io/api/v4/"
+    static let baseURL = "gnews.io"
     static let apiKey = "66a30fb20f96f51ad9858c6c3b52b52d"
 }
