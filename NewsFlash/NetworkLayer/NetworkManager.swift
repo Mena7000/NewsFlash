@@ -35,6 +35,17 @@ class DefaultNetworkManager: NetworkManager {
                         throw NetworkError.fromStatusCode(httpResponse.statusCode)
                     }
                 }
+                .mapError { error -> Error in
+                    if let urlError = error as? URLError {
+                        switch urlError.code {
+                        case .notConnectedToInternet, .networkConnectionLost, .timedOut, .cannotFindHost:
+                            return NetworkError.noInternet
+                        default:
+                            return NetworkError.unknown
+                        }
+                    }
+                    return error
+                }
                 .handleEvents(receiveOutput: { _ in
                     self.logSuccess(request)
                 }, receiveCompletion: { completion in

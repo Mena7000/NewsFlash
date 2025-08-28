@@ -103,17 +103,57 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="5br-DA-tze"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpO-xo-85b">
+                                <rect key="frame" x="0.0" y="117" width="393" height="701"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Hlk-II-b96">
+                                        <rect key="frame" x="131.66666666666666" y="150.66666666666669" width="129.99999999999997" height="199.66666666666669"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rpy-yv-8h8">
+                                                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="130" id="Yj1-Zd-4hW"/>
+                                                    <constraint firstAttribute="height" constant="130" id="YnK-hI-XD9"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlT-OX-MND">
+                                                <rect key="frame" x="41.333333333333343" y="145" width="47" height="21.666666666666657"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLV-Dw-2Wp">
+                                                <rect key="frame" x="46.333333333333343" y="181.66666666666663" width="37.333333333333343" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Hlk-II-b96" firstAttribute="centerX" secondItem="hpO-xo-85b" secondAttribute="centerX" id="4uL-Y3-58F"/>
+                                    <constraint firstItem="Hlk-II-b96" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hpO-xo-85b" secondAttribute="leading" constant="15" id="OZs-0Y-ome"/>
+                                    <constraint firstItem="Hlk-II-b96" firstAttribute="centerY" secondItem="hpO-xo-85b" secondAttribute="centerY" constant="-100" id="XMn-D1-DAc"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Hlk-II-b96" secondAttribute="trailing" constant="15" id="tkD-bL-dXs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QNj-Pw-LrI" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="0nc-GU-oKm"/>
                             <constraint firstItem="QNj-Pw-LrI" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="15" id="1Om-WX-8WC"/>
+                            <constraint firstItem="hpO-xo-85b" firstAttribute="top" secondItem="QNj-Pw-LrI" secondAttribute="bottom" id="3Wo-Ez-Qly"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hCe-NO-lm5" secondAttribute="trailing" constant="15" id="Cqe-HQ-Ubz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hpO-xo-85b" secondAttribute="trailing" id="HWp-3A-sJd"/>
                             <constraint firstItem="hCe-NO-lm5" firstAttribute="top" secondItem="QNj-Pw-LrI" secondAttribute="bottom" constant="15" id="Onc-ch-734"/>
                             <constraint firstAttribute="trailing" secondItem="QNj-Pw-LrI" secondAttribute="trailing" constant="15" id="RE1-fd-Okz"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="hCe-NO-lm5" secondAttribute="bottom" constant="15" id="kBa-YD-Gsm"/>
+                            <constraint firstItem="hpO-xo-85b" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="lhb-S3-uHo"/>
                             <constraint firstItem="hCe-NO-lm5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="oBP-Mv-b7X"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="hpO-xo-85b" secondAttribute="bottom" id="xG1-eJ-ew9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cm5-PU-ZN6"/>

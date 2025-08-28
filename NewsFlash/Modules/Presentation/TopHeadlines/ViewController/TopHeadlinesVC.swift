@@ -13,6 +13,7 @@ class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var headlinesTable: UITableView!
     @IBOutlet weak var selectedCountryCodeLbl: UILabel!
+    @IBOutlet weak var msgView: UIView!
     
     var viewModel: TopHeadlinesVM!
     private var cancellables = Set<AnyCancellable>()
@@ -67,6 +68,8 @@ class TopHeadlinesVC: BaseVC {
         viewModel.$error
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
+                (if value == .noInternet)
+                    
                 self?.showToaster(msg: value?.errorDescription ?? "")
             }
             .store(in: &viewModel.cancellables)
