@@ -13,38 +13,8 @@ struct NewsDetailUI: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                AsyncImage(url: URL(string: data?.image ?? "")) { phase in
-                    switch phase {
-                    case .empty:
-                        // Placeholder while loading
-                        Color.gray.opacity(0.2)
-                            .overlay(
-                                ProgressView()
-                            )
-                        
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFill()
-                        
-                    case .failure(_):
-                        // Fallback image
-                        Image(systemName: "photo")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.gray.opacity(0.6))
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                        
-                    @unknown default:
-                        EmptyView()
-                    }
-                }
-                .frame(height: 200)
-                .frame(maxWidth: .infinity)
-                .cornerRadius(15)
-                .clipped()
-                
+                AsyncImageView(urlString: data?.image)
+
                 TextView(txtValue: (data?.title ?? "").capitalized,
                          size: 22,
                          weight: .bold,
@@ -77,18 +47,18 @@ struct NewsDetailUI: View {
                         .renderingMode(.original)
                         .background(Color.gray.opacity(0.2))
                         .frame(width: 15, height: 15)
-                    
+                        
                     TextView(txtValue: (data?.publishedAt?.dateString() ?? "").capitalized,
                              size: 13,
                              weight: .regular,
                              color: Color(UIColor(hex: "858585")))
                 }
-                
+
             }
             .padding(.horizontal, 16)
         }
     }
-    
+
     struct TextView: View {
         var txtValue: String
         var size: CGFloat
@@ -98,10 +68,47 @@ struct NewsDetailUI: View {
         var body: some View {
             Text(txtValue)
                 .font(.system(size: size, weight: weight))
-            //                .frame(maxWidth: .infinity, alignment: .leading)
+//                .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(color)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+    
+    struct AsyncImageView: View {
+        let urlString: String?
+
+        var body: some View {
+            ZStack {
+                AsyncImage(url: URL(string: urlString ?? "")) { phase in
+                    switch phase {
+                    case .empty:
+                        Color.gray.opacity(0.2)
+                            .overlay(ProgressView())
+
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+
+                    case .failure(_):
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.gray.opacity(0.6))
+                            .padding()
+
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+            }
+            .frame(width: 350, height: 200)
+//            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(15)
+            .clipped()
+            .padding(.horizontal, 16)
         }
     }
 }

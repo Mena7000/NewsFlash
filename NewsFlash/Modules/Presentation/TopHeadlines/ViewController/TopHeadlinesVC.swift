@@ -169,37 +169,38 @@ extension TopHeadlinesVC: UIPickerViewDelegate, UIPickerViewDataSource {
         pickerContainer.layer.shadowRadius = 5
         pickerContainer.isHidden = true
         view.addSubview(pickerContainer)
-        
+
         pickerContainer.translatesAutoresizingMaskIntoConstraints = false
         countryPicker.translatesAutoresizingMaskIntoConstraints = false
         countryPicker.delegate = self
         countryPicker.dataSource = self
-        
-        let toolbar = UIToolbar()
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
+
+        // Create toolbar with initial frame to avoid width==0 constraint
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
         toolbar.barStyle = .default
         toolbar.isTranslucent = true
-        toolbar.sizeToFit()
 
         let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(hidePicker))
         let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneTapped))
         toolbar.setItems([cancel, flex, done], animated: false)
-        
+
         pickerContainer.addSubview(toolbar)
         pickerContainer.addSubview(countryPicker)
+
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             pickerContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pickerContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pickerContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             pickerContainer.heightAnchor.constraint(equalToConstant: 250),
-            
+
             toolbar.topAnchor.constraint(equalTo: pickerContainer.topAnchor),
             toolbar.leadingAnchor.constraint(equalTo: pickerContainer.leadingAnchor),
             toolbar.trailingAnchor.constraint(equalTo: pickerContainer.trailingAnchor),
             toolbar.heightAnchor.constraint(equalToConstant: 44),
-            
+
             countryPicker.topAnchor.constraint(equalTo: toolbar.bottomAnchor),
             countryPicker.leadingAnchor.constraint(equalTo: pickerContainer.leadingAnchor),
             countryPicker.trailingAnchor.constraint(equalTo: pickerContainer.trailingAnchor),
