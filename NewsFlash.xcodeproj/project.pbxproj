@@ -45,6 +45,7 @@
 		19C8D07B2E5F5CAC0075386F /* HeadlinesListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07A2E5F5CAB0075386F /* HeadlinesListUseCase.swift */; };
 		19C8D07D2E5F5D790075386F /* TopHeadlinesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07C2E5F5D780075386F /* TopHeadlinesListService.swift */; };
 		19C8D07F2E5F5DCA0075386F /* TopHeadlinesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */; };
+		19C8D0812E60A8CA0075386F /* EmptyViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0802E60A8C80075386F /* EmptyViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		19C8D07A2E5F5CAB0075386F /* HeadlinesListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesListUseCase.swift; sourceTree = "<group>"; };
 		19C8D07C2E5F5D780075386F /* TopHeadlinesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesListService.swift; sourceTree = "<group>"; };
 		19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesResponse.swift; sourceTree = "<group>"; };
+		19C8D0802E60A8C80075386F /* EmptyViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 		19C8D0002E5E4C250075386F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D0802E60A8C80075386F /* EmptyViewState.swift */,
 				19C8CFFD2E5E4C250075386F /* ActivityLoaderView.swift */,
 				19C8CFFE2E5E4C250075386F /* BaseVC.swift */,
 				19C8CFFF2E5E4C250075386F /* ToastView.swift */,
@@ -439,6 +442,7 @@
 				19C8D06F2E5F58F80075386F /* RequestProtocol.swift in Sources */,
 				19C8D0702E5F58F80075386F /* DataParser.swift in Sources */,
 				19C8D0712E5F58F80075386F /* Logger.swift in Sources */,
+				19C8D0812E60A8CA0075386F /* EmptyViewState.swift in Sources */,
 				19C8D0722E5F58F80075386F /* NetworkError.swift in Sources */,
 				19C8D0262E5E6F9E0075386F /* UISearchBarExt.swift in Sources */,
 				19C8D0172E5E4C250075386F /* ToastView.swift in Sources */,

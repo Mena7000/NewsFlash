@@ -13,9 +13,12 @@ class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var headlinesTable: UITableView!
     @IBOutlet weak var selectedCountryCodeLbl: UILabel!
-    @IBOutlet weak var msgView: UIView!
+    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var emptyVImg: UIImageView!
+    @IBOutlet weak var emptyVTitleLbl: UILabel!
+    @IBOutlet weak var emptyVDiscLbl: UILabel!
     
-    var viewModel: TopHeadlinesVM!
+    private var viewModel: TopHeadlinesVM!
     private var cancellables = Set<AnyCancellable>()
 
     private var countryPicker = UIPickerView()
@@ -41,13 +44,13 @@ class TopHeadlinesVC: BaseVC {
         print("💰💰💰💰 TopHeadlinesVC deallocated 💰💰💰💰")
     }
     
-    func setupUI() {
+    private func setupUI() {
         headlinesTable.registerCellNib(withIdentifier: "HeadlineCell")
         setupSearchUI()
         setupCountryPicker()
     }
     
-    func bindVM() {
+    private func bindVM() {
         viewModel = TopHeadlinesVM(topHeadlinesListUseCase: DependencyContainer.shared.resolveTopHeadlinesListUseCase())
 
         viewModel.$isLoading
@@ -68,14 +71,21 @@ class TopHeadlinesVC: BaseVC {
         viewModel.$error
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
-                (if value == .noInternet)
-                    
+                guard let error = value else { return }
+                switch error {
+                case .noInternet:
+                    self?.setEmptyViewUI(state: .noInternet)
+                default:
+                    break
+                }
                 self?.showToaster(msg: value?.errorDescription ?? "")
             }
             .store(in: &viewModel.cancellables)
         
         viewModel.$news
-            .sink { [weak self] _ in
+            .sink { [weak self] data in
+                self?.setEmptyViewUI(state: (data.count == 0) ? .noResults : .hidden)
+                
                 DispatchQueue.main.async {
                     self?.headlinesTable.reloadData()
                 }
@@ -85,7 +95,21 @@ class TopHeadlinesVC: BaseVC {
 //        viewModel.fetchNews() // no need to trigger it, as the search keyword already triggers fetching news.
     }
     
-    func setupSearchUI() {
+    private func setEmptyViewUI(state: EmptyViewState) {
+        if state != .hidden {
+            emptyVImg.image = UIImage(named: state.imgName)
+            emptyVTitleLbl.text = state.title
+            emptyVDiscLbl.text = state.disc
+            emptyView.isHidden = false
+            headlinesTable.isHidden = true
+            
+        } else {
+            emptyView.isHidden = true
+            headlinesTable.isHidden = false
+        }
+    }
+    
+    private func setupSearchUI() {
         searchBar.searchTextField.backgroundColor = UIColor(white: 0.97, alpha: 1.0)
         searchBar.searchTextField.layer.cornerRadius = 10
         searchBar.searchTextField.clipsToBounds = true

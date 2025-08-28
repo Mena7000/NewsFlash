@@ -159,6 +159,10 @@
                     <navigationItem key="navigationItem" id="cm5-PU-ZN6"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="emptyVDiscLbl" destination="wLV-Dw-2Wp" id="RnJ-Wb-Vbx"/>
+                        <outlet property="emptyVImg" destination="rpy-yv-8h8" id="IXw-IB-Pv2"/>
+                        <outlet property="emptyVTitleLbl" destination="vlT-OX-MND" id="wNa-aG-kZL"/>
+                        <outlet property="emptyView" destination="hpO-xo-85b" id="1e4-gA-8BL"/>
                         <outlet property="headlinesTable" destination="hCe-NO-lm5" id="meq-R2-Y4I"/>
                         <outlet property="searchBar" destination="DfB-gc-hSo" id="lOm-m7-X22"/>
                         <outlet property="selectedCountryCodeLbl" destination="tZw-aP-COT" id="ggR-3h-IV7"/>
