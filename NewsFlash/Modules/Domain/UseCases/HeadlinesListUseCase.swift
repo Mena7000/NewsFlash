@@ -11,7 +11,7 @@ protocol TopHeadlinesListUseCase {
     func fetchTopHeadlines(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
 }
 
-class DefaultTopHeadlinesListUseCase: TopHeadlinesListUseCase {
+final class DefaultTopHeadlinesListUseCase: TopHeadlinesListUseCase {
     private let repository: TopHeadlinesListRepository
     
     init(repository: TopHeadlinesListRepository) {

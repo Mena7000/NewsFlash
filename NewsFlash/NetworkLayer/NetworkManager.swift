@@ -13,7 +13,7 @@ protocol NetworkManager {
     func performNetworkRequest(with requestData: RequestProtocol) -> AnyPublisher<Data, Error>
 }
 
-class DefaultNetworkManager: NetworkManager {
+final class DefaultNetworkManager: NetworkManager {
     private let urlSession: URLSession
     
     init(urlSession: URLSession = URLSession.shared) {

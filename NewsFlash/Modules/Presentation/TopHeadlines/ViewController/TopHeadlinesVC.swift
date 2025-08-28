@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import SwiftUI
 
-class TopHeadlinesVC: BaseVC {
+final class TopHeadlinesVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var headlinesTable: UITableView!
     @IBOutlet weak var selectedCountryCodeLbl: UILabel!

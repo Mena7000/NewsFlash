@@ -12,7 +12,7 @@ protocol TopHeadlinesListRepository {
     func fetchTopHeadlinesList(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
 }
 
-class DefaultTopHeadlinesListRepository: TopHeadlinesListRepository {
+final class DefaultTopHeadlinesListRepository: TopHeadlinesListRepository {
     private let requestManager: RequestManager
 
     init(requestManager: RequestManager = DefaultRequestManager()) {

@@ -12,7 +12,7 @@ protocol TopHeadlinesListServiceProtocol {
     func fetchTopHeadlines(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
 }
 
-class TopHeadlinesListService: TopHeadlinesListServiceProtocol {
+final class TopHeadlinesListService: TopHeadlinesListServiceProtocol {
     private let requestManager: RequestManager
 
     init(requestManager: RequestManager = DefaultRequestManager()) {
