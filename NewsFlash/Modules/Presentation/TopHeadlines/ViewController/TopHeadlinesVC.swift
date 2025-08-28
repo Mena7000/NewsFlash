@@ -83,6 +83,7 @@ class TopHeadlinesVC: BaseVC {
             .store(in: &viewModel.cancellables)
         
         viewModel.$news
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] data in
                 self?.setEmptyViewUI(state: (data.count == 0) ? .noResults : .hidden)
                 
