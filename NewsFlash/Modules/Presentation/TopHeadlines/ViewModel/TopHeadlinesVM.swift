@@ -25,16 +25,30 @@ class TopHeadlinesVM: ObservableObject {
     
     init(topHeadlinesListUseCase: TopHeadlinesListUseCase) {
         self.topHeadlinesListUseCase = topHeadlinesListUseCase
+        observeCountryFilter()
     }
 
-    func fetchNews() {
+    func observeCountryFilter() {
+        $selectedCountry
+            .compactMap { $0 }
+            .sink { [weak self] country in
+                guard let self = self else { return }
+                print("Selected country is: \(country.name)")
+                news.removeAll()
+                fetchNews(selectedCountry: country.value)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func fetchNews(selectedCountry: String = "eg") {
         isLoading = true
         var currentPage = 0
         if news.count != 0 {
             currentPage = (news.count / 10)
         }
 
-        topHeadlinesListUseCase.fetchTopHeadlines(page: (currentPage + 1))
+        topHeadlinesListUseCase.fetchTopHeadlines(country: selectedCountry,
+                                                  page: (currentPage + 1))
             .sink { completion in
                 self.isLoading = false
                 switch completion {

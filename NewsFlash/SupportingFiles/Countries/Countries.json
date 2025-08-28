@@ -1,9 +1,9 @@
 [
+    { "name": "Egypt", "value": "eg" },
     { "name": "Australia", "value": "au" },
     { "name": "Brazil", "value": "br" },
     { "name": "Canada", "value": "ca" },
     { "name": "China", "value": "cn" },
-    { "name": "Egypt", "value": "eg" },
     { "name": "France", "value": "fr" },
     { "name": "Germany", "value": "de" },
     { "name": "Greece", "value": "gr" },

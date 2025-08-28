@@ -23,32 +23,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F09CCAA3-EF95-4279-BF5D-29100F3B3915"
-            shouldBeEnabled = "Yes"
+            uuid = "5B21FA32-736C-493A-82A6-D2B7569ACB2C"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NewsFlash/Modules/Presentation/TopHeadlines/ViewModel/TopHeadlinesVM.swift"
+            filePath = "NewsFlash/Modules/Domain/Repositories/TopHeadlinesListRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "fetchNextPage(indxRow:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "fetchTopHeadlinesList(country:page:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F3A51AFB-0C9F-4A77-9F54-39FC583D1B32"
+            uuid = "4FA96020-9F9F-4BA5-9ED6-D6270DFC97B0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NewsFlash/Modules/Presentation/TopHeadlines/ViewModel/TopHeadlinesVM.swift"
+            filePath = "NewsFlash/Modules/Service/TopHeadlinesListService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "fetchNextPage(indxRow:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "fetchTopHeadlines(country:page:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB40BA73-27AD-42B2-BB2D-A6366AD4EDE0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NewsFlash/Modules/Domain/UseCases/HeadlinesListUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "fetchTopHeadlines(country:page:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
