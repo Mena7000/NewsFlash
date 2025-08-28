@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol TopHeadlinesListRepository {
-    func fetchTopHeadlinesList(country: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
+    func fetchTopHeadlinesList(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
 }
 
 class DefaultTopHeadlinesListRepository: TopHeadlinesListRepository {
@@ -20,14 +20,15 @@ class DefaultTopHeadlinesListRepository: TopHeadlinesListRepository {
     }
 
 //    top-headlines?category=general&apikey=66a30fb20f96f51ad9858c6c3b52b52d
-    func fetchTopHeadlinesList(country: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError> {
+    func fetchTopHeadlinesList(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError> {
         let request = DefaultRequest(
-            path: "top-headlines",
+            path: (q == "") ? "top-headlines" : "search",
             requestType: .GET,
             urlParams: [
                 "apikey": APIConstants.apiKey,
                 "category": "general",
                 "page": "\(page)",
+                "q": "\(q)",
                 "country": "\(country)"
             ]
         )

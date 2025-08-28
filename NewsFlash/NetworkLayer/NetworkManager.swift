@@ -25,11 +25,15 @@ class DefaultNetworkManager: NetworkManager {
             let request = try requestData.request()
             return urlSession.dataTaskPublisher(for: request)
                 .tryMap { data, response in
-                    guard let httpResponse = response as? HTTPURLResponse,
-                          httpResponse.statusCode == 200 else {
+                    guard let httpResponse = response as? HTTPURLResponse else {
                         throw NetworkError.invalidServerResponse
                     }
-                    return data
+
+                    if httpResponse.statusCode == 200 {
+                        return data
+                    } else {
+                        throw NetworkError.fromStatusCode(httpResponse.statusCode)
+                    }
                 }
                 .handleEvents(receiveOutput: { _ in
                     self.logSuccess(request)
@@ -43,7 +47,7 @@ class DefaultNetworkManager: NetworkManager {
             return Fail(error: error).eraseToAnyPublisher()
         }
     }
-    
+
     private func logSuccess(_ request: URLRequest) {
         Logger.networking.info("""
             ✅ [\(200)] [\(request.httpMethod  ?? "")] \

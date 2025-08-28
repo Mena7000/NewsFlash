@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 protocol TopHeadlinesListServiceProtocol {
-    func fetchTopHeadlines(country: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
+    func fetchTopHeadlines(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
 }
 
 class TopHeadlinesListService: TopHeadlinesListServiceProtocol {
@@ -19,14 +19,15 @@ class TopHeadlinesListService: TopHeadlinesListServiceProtocol {
         self.requestManager = requestManager
     }
 
-    func fetchTopHeadlines(country: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError> {
+    func fetchTopHeadlines(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError> {
         let request = DefaultRequest(
-            path: "top-headlines",
+            path: (q == "") ? "top-headlines" : "search",
             requestType: .GET,
             urlParams: [
                 "category": "general",
                 "apikey": APIConstants.apiKey,
                 "page": "\(page)",
+                "q": "\(q)",
                 "country": "\(country)"
             ]
         )

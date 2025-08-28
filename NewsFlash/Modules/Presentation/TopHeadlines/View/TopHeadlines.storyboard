@@ -23,14 +23,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="301" height="48"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="DfB-gc-hSo">
-                                                <rect key="frame" x="0.0" y="0.0" width="301" height="48"/>
+                                                <rect key="frame" x="4" y="0.0" width="297" height="48"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </searchBar>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="DfB-gc-hSo" firstAttribute="top" secondItem="eqR-al-Mzv" secondAttribute="top" id="7iM-Ei-0k5"/>
-                                            <constraint firstItem="DfB-gc-hSo" firstAttribute="leading" secondItem="eqR-al-Mzv" secondAttribute="leading" id="Df1-CK-X4T"/>
+                                            <constraint firstItem="DfB-gc-hSo" firstAttribute="leading" secondItem="eqR-al-Mzv" secondAttribute="leading" constant="4" id="Df1-CK-X4T"/>
                                             <constraint firstAttribute="bottom" secondItem="DfB-gc-hSo" secondAttribute="bottom" id="c6e-jX-Q6y"/>
                                             <constraint firstAttribute="trailing" secondItem="DfB-gc-hSo" secondAttribute="trailing" id="oDh-ZM-JVb"/>
                                         </constraints>

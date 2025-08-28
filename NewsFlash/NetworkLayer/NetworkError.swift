@@ -7,41 +7,62 @@
 
 import Foundation
 
-public enum NetworkError: LocalizedError {
+enum NetworkError: Error {
     case noInternet
-    case invalidServerResponse
     case invalidURL
+    case badRequest
+    case unauthorized
+    case forbidden
+    case tooManyRequests
+    case internalServerError
+    case serviceUnavailable
+    case invalidServerResponse
+    case decodingError(DecodingError)
     case unknown
-    case decodingError(DecodingError?)
-    case httpError(statusCode: Int, message: String?)
 
     public var errorDescription: String? {
         switch self {
         case .noInternet:
             return "No internet connection. Please check your network."
-        case .invalidServerResponse:
-            return "The server returned an invalid response."
         case .invalidURL:
             return "URL string is malformed."
+        case .badRequest:
+            return "The request was malformed, often due to missing or invalid parameters"
+        case .unauthorized:
+            return "No valid API key provided or API key is invalid"
+        case .forbidden:
+            return "You have reached your daily quota limit, the next reset is at 00:00 UTC"
+        case .tooManyRequests:
+            return "Too many requests were sent in a short time period"
+        case .internalServerError:
+            return "Something went wrong on our end"
+        case .serviceUnavailable:
+            return "We're temporarily offline for maintenance"
+        case .invalidServerResponse:
+            return "Invalid server response"
+        case .decodingError(let err):
+            return "Failed to decode response: \(err.localizedDescription)"
         case .unknown:
-            return "unknown"
-        case .decodingError(let decodingError):
-            return "Decoding error: \(decodingError)"
-        case .httpError(let statusCode, let message):
-            switch statusCode {
-            case 400:
-                return message ?? "Bad request. Please try again."
-            case 401:
-                return "Unauthorized. Please login again."
-            case 403:
-                return "You don’t have permission to perform this action."
-            case 404:
-                return "The resource was not found."
-            case 500...599:
-                return "Server error. Please try later."
-            default:
-                return message ?? "Unexpected error (\(statusCode))."
-            }
+            return "An unknown error occurred."
+        }
+    }
+
+    static func fromStatusCode(_ code: Int) -> NetworkError {
+        switch code {
+        case 400:
+            return .badRequest
+        case 401:
+            return .unauthorized
+        case 403:
+            return .forbidden
+        case 429:
+            return .tooManyRequests
+        case 500:
+            return .internalServerError
+        case 503:
+            return .serviceUnavailable
+        default:
+            return .unknown
         }
     }
 }

@@ -8,7 +8,7 @@
 import Combine
 
 protocol TopHeadlinesListUseCase {
-    func fetchTopHeadlines(country: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
+    func fetchTopHeadlines(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError>
 }
 
 class DefaultTopHeadlinesListUseCase: TopHeadlinesListUseCase {
@@ -18,7 +18,7 @@ class DefaultTopHeadlinesListUseCase: TopHeadlinesListUseCase {
         self.repository = repository
     }
     
-    func fetchTopHeadlines(country: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError> {
-        repository.fetchTopHeadlinesList(country: country, page: page)
+    func fetchTopHeadlines(country: String, q: String, page: Int) -> AnyPublisher<TopHeadlinesResponse, NetworkError> {
+        repository.fetchTopHeadlinesList(country: country, q: q, page: page)
     }
 }

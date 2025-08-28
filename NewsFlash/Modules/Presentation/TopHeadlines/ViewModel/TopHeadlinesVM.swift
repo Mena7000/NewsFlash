@@ -25,29 +25,55 @@ class TopHeadlinesVM: ObservableObject {
     
     init(topHeadlinesListUseCase: TopHeadlinesListUseCase) {
         self.topHeadlinesListUseCase = topHeadlinesListUseCase
-        observeCountryFilter()
+        startObserving()
     }
 
-    func observeCountryFilter() {
+    func startObserving() {
         $selectedCountry
             .compactMap { $0 }
             .sink { [weak self] country in
                 guard let self = self else { return }
                 print("Selected country is: \(country.name)")
                 news.removeAll()
-                fetchNews(selectedCountry: country.value)
+                fetchNews(country: country.value)
+            }
+            .store(in: &cancellables)
+        
+        $searchKeyword
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink { [weak self] keyword in
+                guard let self = self else { return }
+                print("search keyword is: \(keyword)")
+                news.removeAll()
+                fetchNews(q: keyword)
             }
             .store(in: &cancellables)
     }
     
-    func fetchNews(selectedCountry: String = "eg") {
+    func fetchNews(country: String = "", q: String = "") {
         isLoading = true
         var currentPage = 0
         if news.count != 0 {
             currentPage = (news.count / 10)
         }
 
-        topHeadlinesListUseCase.fetchTopHeadlines(country: selectedCountry,
+        var selectedCountryValue = "eg"
+        if country != "" {
+            selectedCountryValue = country
+        } else if selectedCountry != nil {
+            selectedCountryValue = selectedCountry?.value ?? "eg"
+        }
+        
+        var keyword = ""
+        if q != "" {
+            keyword = q
+        } else if searchKeyword != "" {
+            keyword = searchKeyword
+        }
+        
+        topHeadlinesListUseCase.fetchTopHeadlines(country: selectedCountryValue,
+                                                  q: keyword,
                                                   page: (currentPage + 1))
             .sink { completion in
                 self.isLoading = false

@@ -49,12 +49,6 @@ class TopHeadlinesVC: BaseVC {
     func bindVM() {
         viewModel = TopHeadlinesVM(topHeadlinesListUseCase: DependencyContainer.shared.resolveTopHeadlinesListUseCase())
 
-        searchBar.textDidChangePublisher
-            .debounce(for: .milliseconds(700), scheduler: RunLoop.main)
-            .removeDuplicates()
-            .assign(to: \.searchKeyword, on: viewModel)
-            .store(in: &cancellables)
-    
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] value in
@@ -85,7 +79,7 @@ class TopHeadlinesVC: BaseVC {
             }
             .store(in: &viewModel.cancellables)
 
-        viewModel.fetchNews()
+//        viewModel.fetchNews() // no need to trigger it, as the search keyword already triggers fetching news.
     }
     
     func setupSearchUI() {
@@ -108,10 +102,10 @@ class TopHeadlinesVC: BaseVC {
         searchBar.searchTextField.layer.borderColor = UIColor(hex: "E0E0E0").cgColor
         searchBar.searchTextField.layer.borderWidth = 1
         
-//        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
-//            string: "hintSearch".localizedString,
-//            attributes: [.foregroundColor: UIColor(hex: "71838E"), .font: UIFont(name: AppFontName.medium, size: 13)!]
-//        )
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(
+            string: "Search",
+            attributes: [.foregroundColor: UIColor(hex: "71838E"), .font: UIFont.systemFont(ofSize: 13)]
+        )
     }
         
     @IBAction func selectCountryBtnTapped(_ sender: Any) {
@@ -123,6 +117,11 @@ class TopHeadlinesVC: BaseVC {
 extension TopHeadlinesVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+        viewModel.searchKeyword = searchText
     }
 }
 
