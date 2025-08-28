@@ -8,10 +8,14 @@
 import UIKit
 
 extension UIImageView {
-    func loadImage(fromPathURL pathURL: String) {
+    func loadImage(fromPathURL pathURL: String, defaultImage: UIImage? = UIImage(systemName: "photo")) {
+        // show default immediately
+        self.image = defaultImage?.withTintColor(.gray)
+        self.tintColor = .gray
+        
         UIImage.loadImage(pathURL: pathURL) { image in
             DispatchQueue.main.async {
-                self.image = image
+                self.image = image ?? defaultImage
             }
         }
     }
@@ -21,45 +25,33 @@ extension UIImage {
     static var imageCache = NSCache<NSString, UIImage>()
 
     static func loadImage(pathURL: String, completion: @escaping (UIImage?) -> Void) {
-//        let baseURL = "https://image.tmdb.org/t/p/"
-//        let imgSize = "w500"
-        let completeURL = /*baseURL + imgSize + */pathURL
-        
-        guard let url = URL(string: completeURL) else {
+        // Check cache first
+        if let cachedImage = imageCache.object(forKey: pathURL as NSString) {
+            completion(cachedImage)
+            return
+        }
+
+        guard let url = URL(string: pathURL) else {
             completion(nil)
             return
         }
 
-        // Show activity indicator
-        let activityIndicator = UIActivityIndicatorView(style: .medium)
-        activityIndicator.startAnimating()
-
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            // Hide activity indicator
-            DispatchQueue.main.async {
-                activityIndicator.stopAnimating()
-            }
-
             if let error = error {
-                print("Error loading image:", error)
+                print("Error loading image:", error.localizedDescription)
                 completion(nil)
                 return
             }
 
-            guard let data = data else {
-                print("No data received.")
+            guard let data = data, let image = UIImage(data: data) else {
+                print("No data or failed to decode image.")
                 completion(nil)
                 return
             }
 
-            if let image = UIImage(data: data) {
-                // Cache the loaded image
-                imageCache.setObject(image, forKey: completeURL as NSString)
-                completion(image)
-            } else {
-                print("Unable to create image from data.")
-                completion(nil)
-            }
+            // Cache and return
+            imageCache.setObject(image, forKey: pathURL as NSString)
+            completion(image)
         }
         task.resume()
     }

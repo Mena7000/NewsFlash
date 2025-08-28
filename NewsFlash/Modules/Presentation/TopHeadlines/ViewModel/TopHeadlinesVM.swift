@@ -53,12 +53,14 @@ class TopHeadlinesVM: ObservableObject {
     }
     
     func fetchNextPage(indxRow: Int) {
-//        let totalCount = news.count
-//        if totalCount != 0  {
-//            if totalCount&& !isLoading {
-//                fetchNews()
-//            }
-//        }
+        let totalCount = news.count
+        if totalCount != 0  {
+            let currentPage = (totalCount / 10)
+            
+            if (indxRow + 1) == (currentPage * 10) && !isLoading {
+                fetchNews()
+            }
+        }
     }
 
     deinit {
