@@ -8,55 +8,85 @@
 import SwiftUI
 
 struct NewsDetailUI: View {
-    var detailId: Int
+    var data: Article? = nil
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Image(systemName: "Date_ic")
-                    .resizable()
-                    .background(Color.gray.opacity(0.2))
-                        .scaledToFill()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 200)
-                        .cornerRadius(15)
-                        .clipped()
-                    
-                TextView(txtValue: "title".capitalized,
+                AsyncImage(url: URL(string: data?.image ?? "")) { phase in
+                    switch phase {
+                    case .empty:
+                        // Placeholder while loading
+                        Color.gray.opacity(0.2)
+                            .overlay(
+                                ProgressView()
+                            )
+                        
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                        
+                    case .failure(_):
+                        // Fallback image
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.gray.opacity(0.6))
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                        
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+                .frame(height: 200)
+                .frame(maxWidth: .infinity)
+                .cornerRadius(15)
+                .clipped()
+                
+                TextView(txtValue: (data?.title ?? "").capitalized,
                          size: 22,
                          weight: .bold,
                          color: .black)
                 
-                TextView(txtValue: "description".capitalized,
+                TextView(txtValue: (data?.description ?? "").capitalized,
                          size: 18,
                          weight: .medium,
                          color: Color(UIColor(hex: "636363")))
                 
-                TextView(txtValue: "content".capitalized,
+                TextView(txtValue: (data?.content ?? "").capitalized,
                          size: 18,
                          weight: .medium,
                          color: Color(UIColor(hex: "636363")))
                 
-                TextView(txtValue: "Read More",
-                         size: 18,
-                         weight: .medium,
-                         color: Color(UIColor(hex: "0000EE")))
+                if let urlString = data?.url, let url = URL(string: urlString) {
+                    Button(action: {
+                        UIApplication.shared.open(url)
+                    }) {
+                        Text("Read More")
+                            .font(.system(size: 18, weight: .medium))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(Color(UIColor(hex: "0000EE")))
+                            .underline()
+                    }
+                }
                 
                 HStack(alignment: .center, spacing: 10) {
                     Image("Date_ic")
                         .renderingMode(.original)
                         .background(Color.gray.opacity(0.2))
                         .frame(width: 15, height: 15)
-                        
-                    TextView(txtValue: "title".capitalized,
+                    
+                    TextView(txtValue: (data?.publishedAt?.dateString() ?? "").capitalized,
                              size: 13,
                              weight: .regular,
                              color: Color(UIColor(hex: "858585")))
                 }
-
+                
             }
+            .padding(.horizontal, 16)
         }
-        .padding(.horizontal, 16)
     }
     
     struct TextView: View {
@@ -68,13 +98,14 @@ struct NewsDetailUI: View {
         var body: some View {
             Text(txtValue)
                 .font(.system(size: size, weight: weight))
-                .frame(maxWidth: .infinity, alignment: .leading)
+            //                .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(color)
-                .lineLimit(0)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
 
 #Preview {
-    NewsDetailUI(detailId: 10)
+    NewsDetailUI(data: nil)
 }

@@ -151,7 +151,7 @@ extension TopHeadlinesVC: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailView = NewsDetailUI(detailId: 10)
+        let detailView = NewsDetailUI(data: viewModel.news[indexPath.row])
         let hostingController = UIHostingController(rootView: detailView)
         navigationController?.pushViewController(hostingController, animated: true)
     }
