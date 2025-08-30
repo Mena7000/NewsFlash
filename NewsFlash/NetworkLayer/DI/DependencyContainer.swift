@@ -12,7 +12,7 @@ class DependencyContainer {
     private init() {}
 
     func resolveTopHeadlinesListUseCase() -> TopHeadlinesListUseCase {
-        let repository = DefaultTopHeadlinesListRepository(requestManager: DefaultRequestManager())
+        let repository = DefaultTopHeadlinesListRepository(service: TopHeadlinesListService())
         return DefaultTopHeadlinesListUseCase(repository: repository)
     }
 }
