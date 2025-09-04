@@ -5,7 +5,10 @@
 //  Created by Mena Maher on 8/27/25.
 //
 
-struct Country: Codable {
+//import Foundation
+
+struct Country: Codable/*, Identifiable, Hashable*/ {
+//    var id = UUID()
     let name: String
     let value: String
 }

@@ -23,12 +23,11 @@ struct TopHeadlineUI: View {
         VStack(spacing: 11) {
             HStack {
                 SearchBar(text: $searchText)
-//                CountryFilterView(selectedCountryValue: "eg")
-                Button(action: {
-                    print("Tapped Egypt")
-                }) {
+//                Button(action: {
+//                    print("Tapped Egypt")
+//                }) {
                     CountryFilterView(selectedCountryValue: "eg")
-                }
+//                }
             }
             .padding()
 
@@ -92,26 +91,28 @@ struct TopHeadlineUI: View {
     }
     
     struct CountryFilterView: View {
-        var selectedCountryValue: String
+        @State var selectedCountryValue: String = "eg"
+        private let countries = LoadCountiesUtil.loadCountries()
 
         var body: some View {
             HStack {
-                Text(selectedCountryValue.uppercased())
-                    .font(.system(size: 13, weight: .regular))
-                    .foregroundStyle(.black)
-
-                Image(systemName: "chevron.down")
-                    .foregroundColor(.black)
-                
+                Picker(selection: $selectedCountryValue,
+                    label: Text(selectedCountryValue.uppercased())) {
+                    ForEach(countries, id: \.value) { country in
+                        Text(country.value)
+                            .tag(country.value)
+                    }
+                }
+                .pickerStyle(.menu)
+                .tint(.black)
+                .onChange(of: selectedCountryValue, { _, newValue in
+                    print("User selected: \(newValue)")
+                })
             }
-            .padding(8)
             .frame(height: 48)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color(UIColor(hex: "E0E0E0")), lineWidth: 1))
-            .onTapGesture {
-                print("CountryFilterView tapped: \(selectedCountryValue)")
-            }
         }
     }
 }
