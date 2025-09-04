@@ -19,8 +19,6 @@
 		19C8D0192E5E4C250075386F /* CollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0032E5E4C250075386F /* CollectionViewExt.swift */; };
 		19C8D01A2E5E4C250075386F /* TableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0042E5E4C250075386F /* TableViewExt.swift */; };
 		19C8D01B2E5E4C250075386F /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0052E5E4C250075386F /* UIImageExt.swift */; };
-		19C8D01C2E5E4C250075386F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D00A2E5E4C250075386F /* SceneDelegate.swift */; };
-		19C8D01D2E5E4C250075386F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D00C2E5E4C250075386F /* AppDelegate.swift */; };
 		19C8D0212E5E64CE0075386F /* HeadlineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19C8D0202E5E64CE0075386F /* HeadlineCell.xib */; };
 		19C8D0222E5E64CE0075386F /* HeadlineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D01F2E5E64CE0075386F /* HeadlineCell.swift */; };
 		19C8D0242E5E6C490075386F /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0232E5E6C460075386F /* StringExt.swift */; };
@@ -47,6 +45,7 @@
 		19C8D07F2E5F5DCA0075386F /* TopHeadlinesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */; };
 		19C8D0812E60A8CA0075386F /* EmptyViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0802E60A8C80075386F /* EmptyViewState.swift */; };
 		19C8D0832E6998000075386F /* TopHeadlineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0822E6998000075386F /* TopHeadlineUI.swift */; };
+		19C8D0852E69A3090075386F /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0842E69A3080075386F /* NewsFlash.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,8 +62,6 @@
 		19C8D0052E5E4C250075386F /* UIImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
 		19C8D0072E5E4C250075386F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19C8D0082E5E4C250075386F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		19C8D00A2E5E4C250075386F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		19C8D00C2E5E4C250075386F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19C8D00D2E5E4C250075386F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C8D01F2E5E64CE0075386F /* HeadlineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineCell.swift; sourceTree = "<group>"; };
 		19C8D0202E5E64CE0075386F /* HeadlineCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeadlineCell.xib; sourceTree = "<group>"; };
@@ -92,6 +89,7 @@
 		19C8D07E2E5F5DC90075386F /* TopHeadlinesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesResponse.swift; sourceTree = "<group>"; };
 		19C8D0802E60A8C80075386F /* EmptyViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewState.swift; sourceTree = "<group>"; };
 		19C8D0822E6998000075386F /* TopHeadlineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlineUI.swift; sourceTree = "<group>"; };
+		19C8D0842E69A3080075386F /* NewsFlash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,12 +119,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		19C8CFF32E5E4C250075386F /* AppDelegate */ = {
+		19C8CFF32E5E4C250075386F /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				19C8D00C2E5E4C250075386F /* AppDelegate.swift */,
+				19C8D0842E69A3080075386F /* NewsFlash.swift */,
 			);
-			path = AppDelegate;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		19C8CFF42E5E4C250075386F /* Cells */ = {
@@ -236,7 +234,6 @@
 				19C8D0062E5E4C250075386F /* Extensions */,
 				19C8D0072E5E4C250075386F /* Assets.xcassets */,
 				19C8D0092E5E4C250075386F /* LaunchScreen.storyboard */,
-				19C8D00A2E5E4C250075386F /* SceneDelegate.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -244,7 +241,7 @@
 		19C8D00E2E5E4C250075386F /* NewsFlash */ = {
 			isa = PBXGroup;
 			children = (
-				19C8CFF32E5E4C250075386F /* AppDelegate */,
+				19C8CFF32E5E4C250075386F /* Main */,
 				19C8CFFB2E5E4C250075386F /* Modules */,
 				19C8CFFC2E5E4C250075386F /* NetworkLayer */,
 				19C8D00B2E5E4C250075386F /* SupportingFiles */,
@@ -461,9 +458,8 @@
 				19C8D02A2E5EF5B20075386F /* UIColorHex.swift in Sources */,
 				19C8D0792E5F5C570075386F /* TopHeadlinesListRepository.swift in Sources */,
 				19C8D02C2E5EF8490075386F /* RoundCornersImage.swift in Sources */,
-				19C8D01C2E5E4C250075386F /* SceneDelegate.swift in Sources */,
 				19C8D07D2E5F5D790075386F /* TopHeadlinesListService.swift in Sources */,
-				19C8D01D2E5E4C250075386F /* AppDelegate.swift in Sources */,
+				19C8D0852E69A3090075386F /* NewsFlash.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +489,7 @@
 				INFOPLIST_FILE = NewsFlash/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = TopHeadlines;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -520,7 +516,7 @@
 				INFOPLIST_FILE = NewsFlash/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = TopHeadlines;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
