@@ -46,6 +46,7 @@
 		19C8D0812E60A8CA0075386F /* EmptyViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0802E60A8C80075386F /* EmptyViewState.swift */; };
 		19C8D0832E6998000075386F /* TopHeadlineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0822E6998000075386F /* TopHeadlineUI.swift */; };
 		19C8D0852E69A3090075386F /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0842E69A3080075386F /* NewsFlash.swift */; };
+		19C8D09B2E69B9220075386F /* HeadLineCellUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		19C8D0802E60A8C80075386F /* EmptyViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewState.swift; sourceTree = "<group>"; };
 		19C8D0822E6998000075386F /* TopHeadlineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlineUI.swift; sourceTree = "<group>"; };
 		19C8D0842E69A3080075386F /* NewsFlash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
+		19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadLineCellUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 			children = (
 				19C8CFF72E5E4C250075386F /* TopHeadlinesVC.swift */,
 				19C8D0822E6998000075386F /* TopHeadlineUI.swift */,
+				19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				19C8D01B2E5E4C250075386F /* UIImageExt.swift in Sources */,
 				19C8D02A2E5EF5B20075386F /* UIColorHex.swift in Sources */,
 				19C8D0792E5F5C570075386F /* TopHeadlinesListRepository.swift in Sources */,
+				19C8D09B2E69B9220075386F /* HeadLineCellUI.swift in Sources */,
 				19C8D02C2E5EF8490075386F /* RoundCornersImage.swift in Sources */,
 				19C8D07D2E5F5D790075386F /* TopHeadlinesListService.swift in Sources */,
 				19C8D0852E69A3090075386F /* NewsFlash.swift in Sources */,

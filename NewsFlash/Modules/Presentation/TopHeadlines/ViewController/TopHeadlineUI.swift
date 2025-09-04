@@ -8,31 +8,31 @@
 import SwiftUI
 
 struct TopHeadlineUI: View {
-//    let employees = ["Alice", "Bob", "Charlie", "David", "Eva"]
+    //    let employees = ["Alice", "Bob", "Charlie", "David", "Eva"]
     @State private var searchText = ""
     
-//    var filteredEmployees: [String] {
-//        if searchText.isEmpty {
-//            return employees
-//        } else {
-//            return employees.filter { $0.localizedCaseInsensitiveContains(searchText) }
-//        }
-//    }
+    //    var filteredEmployees: [String] {
+    //        if searchText.isEmpty {
+    //            return employees
+    //        } else {
+    //            return employees.filter { $0.localizedCaseInsensitiveContains(searchText) }
+    //        }
+    //    }
     
     var body: some View {
         VStack(spacing: 11) {
             HStack {
                 SearchBar(text: $searchText)
-                    CountryFilterView(selectedCountryValue: "eg")
+                CountryFilterView()
             }
             .padding()
-
-//            // Your list
-//            List(filteredEmployees, id: \.self) { employee in
-//                Text(employee)
-//            }
-//            
-//            Spacer()
+            
+            //            // Your list
+            //            List(filteredEmployees, id: \.self) { employee in
+            //                Text(employee)
+            //            }
+            //
+            //            Spacer()
         }
         Spacer()
     }
@@ -87,28 +87,42 @@ struct TopHeadlineUI: View {
     }
     
     struct CountryFilterView: View {
-        @State var selectedCountryValue: String = "eg"
+        @State private var selectedCountryValue: String = "eg"
         private let countries = LoadCountiesUtil.loadCountries()
 
         var body: some View {
-            HStack {
-                Picker(selection: $selectedCountryValue,
-                    label: Text(selectedCountryValue.uppercased())) {
+            ZStack {
+                HStack {
+                    Text(selectedCountryValue.uppercased())
+                        .font(.system(size: 13, weight: .regular))
+                        .foregroundStyle(.black)
+                    
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.black)
+                    
+                }
+
+                Picker("", selection: $selectedCountryValue) {
                     ForEach(countries, id: \.value) { country in
-                        Text(country.value)
+                        Text(country.name)
                             .tag(country.value)
                     }
                 }
+                .labelsHidden()
                 .pickerStyle(.menu)
-                .tint(.black)
-                .onChange(of: selectedCountryValue, { _, newValue in
+                .opacity(0.02)
+                .contentShape(Rectangle())
+                .frame(maxWidth: .infinity)
+                .clipped()
+                .onChange(of: selectedCountryValue) { _, newValue in
                     print("User selected: \(newValue)")
-                })
+                }
             }
-            .frame(height: 48)
+            .frame(width: 60, height: 48)
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color(UIColor(hex: "E0E0E0")), lineWidth: 1))
+                    .stroke(Color(UIColor(hex: "E0E0E0")), lineWidth: 1)
+            )
         }
     }
 }
