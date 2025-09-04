@@ -7,8 +7,7 @@
 
 //import Foundation
 
-struct Country: Codable/*, Identifiable, Hashable*/ {
-//    var id = UUID()
+struct Country: Codable {
     let name: String
     let value: String
 }

@@ -8,26 +8,22 @@
 import SwiftUI
 
 struct TopHeadlineUI: View {
-    let employees = ["Alice", "Bob", "Charlie", "David", "Eva"]
+//    let employees = ["Alice", "Bob", "Charlie", "David", "Eva"]
     @State private var searchText = ""
     
-    var filteredEmployees: [String] {
-        if searchText.isEmpty {
-            return employees
-        } else {
-            return employees.filter { $0.localizedCaseInsensitiveContains(searchText) }
-        }
-    }
+//    var filteredEmployees: [String] {
+//        if searchText.isEmpty {
+//            return employees
+//        } else {
+//            return employees.filter { $0.localizedCaseInsensitiveContains(searchText) }
+//        }
+//    }
     
     var body: some View {
         VStack(spacing: 11) {
             HStack {
                 SearchBar(text: $searchText)
-//                Button(action: {
-//                    print("Tapped Egypt")
-//                }) {
                     CountryFilterView(selectedCountryValue: "eg")
-//                }
             }
             .padding()
 
