@@ -13,7 +13,8 @@ struct NewsDetailUI: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                AsyncImageView(urlString: data?.image)
+                AsyncImageView(urlString: data?.image,
+                               frame: CGSize(width: 350, height: 200))
 
                 TextView(txtValue: (data?.title ?? "").capitalized,
                          size: 22,
@@ -55,59 +56,6 @@ struct NewsDetailUI: View {
                 }
 
             }
-            .padding(.horizontal, 16)
-        }
-    }
-
-    struct TextView: View {
-        var txtValue: String
-        var size: CGFloat
-        var weight: Font.Weight
-        var color: Color
-        
-        var body: some View {
-            Text(txtValue)
-                .font(.system(size: size, weight: weight))
-//                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(color)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-    }
-    
-    struct AsyncImageView: View {
-        let urlString: String?
-
-        var body: some View {
-            ZStack {
-                AsyncImage(url: URL(string: urlString ?? "")) { phase in
-                    switch phase {
-                    case .empty:
-                        Color.gray.opacity(0.2)
-                            .overlay(ProgressView())
-
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .scaledToFill()
-
-                    case .failure(_):
-                        Image(systemName: "photo")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.gray.opacity(0.6))
-                            .padding()
-
-                    @unknown default:
-                        EmptyView()
-                    }
-                }
-            }
-            .frame(width: 350, height: 200)
-//            .frame(maxWidth: .infinity)
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(15)
-            .clipped()
             .padding(.horizontal, 16)
         }
     }
