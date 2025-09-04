@@ -10,7 +10,7 @@ import SwiftUI
 struct TopHeadlineUI: View {
     let employees = ["Alice", "Bob", "Charlie", "David", "Eva"]
     @State private var searchText = ""
-
+    
     var filteredEmployees: [String] {
         if searchText.isEmpty {
             return employees
@@ -18,47 +18,45 @@ struct TopHeadlineUI: View {
             return employees.filter { $0.localizedCaseInsensitiveContains(searchText) }
         }
     }
-
+    
     var body: some View {
-        VStack(spacing: 16) {
-            // Custom search bar + another view beside it
+        VStack(spacing: 11) {
             HStack {
                 SearchBar(text: $searchText)
-
+//                CountryFilterView(selectedCountryValue: "eg")
                 Button(action: {
-                    print("Filter tapped")
+                    print("Tapped Egypt")
                 }) {
-                    Image(systemName: "line.3.horizontal.decrease.circle")
-                        .font(.title2)
+                    CountryFilterView(selectedCountryValue: "eg")
                 }
-                .padding(.trailing)
             }
+            .padding()
 
-            // Your list
-            List(filteredEmployees, id: \.self) { employee in
-                Text(employee)
-            }
-
-            Spacer()
+//            // Your list
+//            List(filteredEmployees, id: \.self) { employee in
+//                Text(employee)
+//            }
+//            
+//            Spacer()
         }
-        .padding(.top)
+        Spacer()
     }
     
     struct SearchBar: View {
         @Binding var text: String
         @State private var isEditing = false
-
+        
         var body: some View {
             HStack {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.black)
-
+                    
                     TextField("Search...", text: $text)
                         .foregroundColor(.primary)
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
-
+                    
                     if !text.isEmpty {
                         Button(action: {
                             self.text = ""
@@ -70,12 +68,11 @@ struct TopHeadlineUI: View {
                 }
                 .padding(8)
                 .frame(height: 48)
-                .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(UIColor(hex: "E0E0E0")), lineWidth: 1))
                 
-
+                
                 if isEditing {
                     Button("Cancel") {
                         self.text = ""
@@ -95,18 +92,26 @@ struct TopHeadlineUI: View {
     }
     
     struct CountryFilterView: View {
-//        var txtValue: String
-//        var size: CGFloat
-//        var weight: Font.Weight
-//        var color: Color
-        
+        var selectedCountryValue: String
+
         var body: some View {
-            Text("")
-//                .font(.system(size: size, weight: weight))
-////                .frame(maxWidth: .infinity, alignment: .leading)
-//                .foregroundStyle(color)
-//                .lineLimit(nil)
-//                .fixedSize(horizontal: false, vertical: true)
+            HStack {
+                Text(selectedCountryValue.uppercased())
+                    .font(.system(size: 13, weight: .regular))
+                    .foregroundStyle(.black)
+
+                Image(systemName: "chevron.down")
+                    .foregroundColor(.black)
+                
+            }
+            .padding(8)
+            .frame(height: 48)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(UIColor(hex: "E0E0E0")), lineWidth: 1))
+            .onTapGesture {
+                print("CountryFilterView tapped: \(selectedCountryValue)")
+            }
         }
     }
 }
