@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct TopHeadlineUI: View {
-    //    let employees = ["Alice", "Bob", "Charlie", "David", "Eva"]
+    @EnvironmentObject var uiState: BaseUIState
+
     @State private var searchText = ""
     
     //    var filteredEmployees: [String] {
@@ -26,6 +27,18 @@ struct TopHeadlineUI: View {
                 CountryFilterView()
             }
             .padding()
+            
+            Button("Show Loader") {
+                uiState.showLoading(true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    uiState.showLoading(false)
+                }
+            }
+
+            Button("Show Toast") {
+                uiState.showToast("This is a toast message!")
+            }
+
             
             //            // Your list
             //            List(filteredEmployees, id: \.self) { employee in

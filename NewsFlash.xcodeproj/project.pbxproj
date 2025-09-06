@@ -13,7 +13,7 @@
 		19C8D0132E5E4C250075386F /* TopHeadlinesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8CFF72E5E4C250075386F /* TopHeadlinesVC.swift */; };
 		19C8D0142E5E4C250075386F /* TopHeadlinesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8CFF82E5E4C250075386F /* TopHeadlinesVM.swift */; };
 		19C8D0152E5E4C250075386F /* ActivityLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8CFFD2E5E4C250075386F /* ActivityLoaderView.swift */; };
-		19C8D0162E5E4C250075386F /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8CFFE2E5E4C250075386F /* BaseVC.swift */; };
+		19C8D0162E5E4C250075386F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8CFFE2E5E4C250075386F /* BaseView.swift */; };
 		19C8D0172E5E4C250075386F /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8CFFF2E5E4C250075386F /* ToastView.swift */; };
 		19C8D0192E5E4C250075386F /* CollectionViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0032E5E4C250075386F /* CollectionViewExt.swift */; };
 		19C8D01A2E5E4C250075386F /* TableViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0042E5E4C250075386F /* TableViewExt.swift */; };
@@ -46,6 +46,7 @@
 		19C8D09B2E69B9220075386F /* HeadLineCellUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */; };
 		19C8D09D2E69CA550075386F /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D09C2E69CA510075386F /* AsyncImageView.swift */; };
 		19C8D09F2E69CAA80075386F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D09E2E69CAA70075386F /* TextView.swift */; };
+		19C8D0A12E6A46820075386F /* BaseUIState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C8D0A02E6A46820075386F /* BaseUIState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +55,7 @@
 		19C8CFF72E5E4C250075386F /* TopHeadlinesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesVC.swift; sourceTree = "<group>"; };
 		19C8CFF82E5E4C250075386F /* TopHeadlinesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeadlinesVM.swift; sourceTree = "<group>"; };
 		19C8CFFD2E5E4C250075386F /* ActivityLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityLoaderView.swift; sourceTree = "<group>"; };
-		19C8CFFE2E5E4C250075386F /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		19C8CFFE2E5E4C250075386F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		19C8CFFF2E5E4C250075386F /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		19C8D0032E5E4C250075386F /* CollectionViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewExt.swift; sourceTree = "<group>"; };
 		19C8D0042E5E4C250075386F /* TableViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExt.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadLineCellUI.swift; sourceTree = "<group>"; };
 		19C8D09C2E69CA510075386F /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		19C8D09E2E69CAA70075386F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		19C8D0A02E6A46820075386F /* BaseUIState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		19C8CFF42E5E4C250075386F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */,
 				19C8D01F2E5E64CE0075386F /* HeadlineCell.swift */,
 				19C8D0202E5E64CE0075386F /* HeadlineCell.xib */,
 			);
@@ -194,9 +197,10 @@
 		19C8D0002E5E4C250075386F /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				19C8D0A02E6A46820075386F /* BaseUIState.swift */,
 				19C8D0802E60A8C80075386F /* EmptyViewState.swift */,
 				19C8CFFD2E5E4C250075386F /* ActivityLoaderView.swift */,
-				19C8CFFE2E5E4C250075386F /* BaseVC.swift */,
+				19C8CFFE2E5E4C250075386F /* BaseView.swift */,
 				19C8CFFF2E5E4C250075386F /* ToastView.swift */,
 			);
 			path = Core;
@@ -264,7 +268,6 @@
 			children = (
 				19C8CFF72E5E4C250075386F /* TopHeadlinesVC.swift */,
 				19C8D0822E6998000075386F /* TopHeadlineUI.swift */,
-				19C8D09A2E69B9220075386F /* HeadLineCellUI.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -429,11 +432,12 @@
 				19C8D0752E5F590F0075386F /* DependencyContainer.swift in Sources */,
 				19C8D0132E5E4C250075386F /* TopHeadlinesVC.swift in Sources */,
 				19C8D0242E5E6C490075386F /* StringExt.swift in Sources */,
+				19C8D0A12E6A46820075386F /* BaseUIState.swift in Sources */,
 				19C8D0142E5E4C250075386F /* TopHeadlinesVM.swift in Sources */,
 				19C8D0152E5E4C250075386F /* ActivityLoaderView.swift in Sources */,
 				19C8D09F2E69CAA80075386F /* TextView.swift in Sources */,
 				19C8D07B2E5F5CAC0075386F /* HeadlinesListUseCase.swift in Sources */,
-				19C8D0162E5E4C250075386F /* BaseVC.swift in Sources */,
+				19C8D0162E5E4C250075386F /* BaseView.swift in Sources */,
 				19C8D06B2E5F58F80075386F /* RequestManager.swift in Sources */,
 				19C8D06C2E5F58F80075386F /* APIConstants.swift in Sources */,
 				19C8D06D2E5F58F80075386F /* NetworkManager.swift in Sources */,

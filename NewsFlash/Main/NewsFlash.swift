@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct NewsFlash: App {
+    @StateObject private var uiState = BaseUIState()
+
     var body: some Scene {
         WindowGroup {
             TopHeadlineUI()
+                .environmentObject(uiState)
         }
     }
 }
